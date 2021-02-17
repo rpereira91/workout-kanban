@@ -1,9 +1,9 @@
 import React from 'react';
 
-function WorkoutCard({children}) {
+function WorkoutCard({movementName, sets, reps}) {
     return (
         <div>
-            {children}
+            Do {movementName} for {sets} x {reps}
         </div>
     );
 }

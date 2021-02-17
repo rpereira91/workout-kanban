@@ -1,7 +1,8 @@
 import React from 'react';
 import WorkoutCard from './WorkoutCard';
-import Board from '@lourenci/react-kanban'
-import '@lourenci/react-kanban/dist/styles.css'
+
+const myContext = React.createContext();
+
 
 function BoardDisplay(props) {
 
@@ -13,7 +14,9 @@ const board = {
         cards: [
           {
             id: 1,
-            content: <div>One in the backlog</div>
+            movementName: 'KB Swing',
+            sets: 4, 
+            reps: 10,
           },
         ]
       },
@@ -23,7 +26,9 @@ const board = {
         cards: [
           {
             id: 2,
-            content: 'Move a card between the columns'
+            movementName: 'KB Swing',
+            sets: 4, 
+            reps: 10,
           },
         ]
       },
@@ -31,7 +36,12 @@ const board = {
         id: 3,
         title: 'Done',
         cards: [
-
+          {
+            id: 23, 
+            movementName: 'KB Swing',
+            sets: 4, 
+            reps: 10,
+          }
         ]
       }
     ]
@@ -39,18 +49,7 @@ const board = {
 
     return (
         <div>
-            <Board
-              onCardDragEnd={(source) => console.log(source)}
-              renderCard={({ content }, { removeCard, dragging }) => (
-                <WorkoutCard dragging={dragging}>
-                  {content}
-                  <button type="button" onClick={removeCard}>Remove Card</button>
-                </WorkoutCard>
-              )}
-              disableColumnDrag
-            > 
-            {board}
-            </Board>
+
         </div>
     );
 }
