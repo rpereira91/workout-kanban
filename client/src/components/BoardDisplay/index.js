@@ -1,5 +1,9 @@
 import React from 'react';
-import WorkoutCard from './WorkoutCard';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+import ExerciseCard from '../ExerciseCard';
+import StatusCol from '../StatusCol';
 
 const myContext = React.createContext();
 
@@ -46,12 +50,7 @@ const board = {
       }
     ]
   }
-
-    return (
-        <div>
-
-        </div>
-    );
+    return <DndProvider backend={HTML5Backend}><StatusCol column={board.columns[0]}/></DndProvider>
 }
 
 export default BoardDisplay;
