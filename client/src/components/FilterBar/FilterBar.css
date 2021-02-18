@@ -1,0 +1,11 @@
+.filterBar{
+    display: flex;
+    flex-flow: row;
+    align-items: flex-end;
+    padding: 2em 3em;
+}
+
+.select{
+    width: 10em;
+    padding: 0em 1em
+}

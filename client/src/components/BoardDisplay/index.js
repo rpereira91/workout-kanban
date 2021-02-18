@@ -1,7 +1,8 @@
 import React from 'react';
-import WorkoutCard from './WorkoutCard';
+import FilterBar from '../FilterBar';
 import Board from '@lourenci/react-kanban'
 import '@lourenci/react-kanban/dist/styles.css'
+import './BoardDisplay.css';
 
 function BoardDisplay(props) {
 
@@ -13,7 +14,8 @@ const board = {
         cards: [
           {
             id: 1,
-            content: <div>One in the backlog</div>
+            title:<h1>Kettlebell Cleans</h1>, 
+            description: <div>10 reps for 3 sets</div>
           },
         ]
       },
@@ -23,7 +25,8 @@ const board = {
         cards: [
           {
             id: 2,
-            content: 'Move a card between the columns'
+            title:<h1>Kettlebell Swings</h1>, 
+            description: <div>10 reps for 3 sets</div>
           },
         ]
       },
@@ -31,26 +34,25 @@ const board = {
         id: 3,
         title: 'Done',
         cards: [
-
+          {
+            id: 1,
+            title:<h1>Goblet Squats</h1>, 
+            description: <div>10 reps for 3 sets</div>
+          },
         ]
       }
     ]
   }
 
     return (
-        <div>
+        <div className='workoutBoard'>
+          <FilterBar />
             <Board
               onCardDragEnd={(source) => console.log(source)}
-              renderCard={({ content }, { removeCard, dragging }) => (
-                <WorkoutCard dragging={dragging}>
-                  {content}
-                  <button type="button" onClick={removeCard}>Remove Card</button>
-                </WorkoutCard>
-              )}
+              moveCard={({ fromPosition, fromColumnId }) => console.log(fromPosition)}
+              initialBoard={board}
               disableColumnDrag
-            > 
-            {board}
-            </Board>
+            />
         </div>
     );
 }
