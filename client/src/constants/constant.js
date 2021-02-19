@@ -6,13 +6,19 @@ export const BOARD = {
         cards: [
           {
             id: 0,
-            title:<h1>Kettlebell Cleans</h1>, 
-            description: <div>10 reps for 3 sets</div>,
+            title: "Kettlebell Cleans", 
+            sets: 3, 
+            reps: 10,
+            description: "some kind of description",
+            column_id: 0,
           },
           {
             id: 4,
-            title:<h1>Kettlebell Snatch</h1>, 
-            description: <div>10 reps for 3 sets</div>,
+            title: "Kettlebell Snatch", 
+            sets: 3, 
+            reps: 10,
+            description: "some kind of description",
+            column_id: 0,
           },
         ]
       },
@@ -22,8 +28,12 @@ export const BOARD = {
         cards: [
           {
             id: 1,
-            title:<h1>Kettlebell Swings</h1>, 
-            description: <div>10 reps for 3 sets</div>
+            title: "Kettlebell Swing", 
+            sets: 3, 
+            reps: 10,
+            description: "some kind of description",
+            rest: 60,
+            column_id: 1,
           },
         ]
       },
@@ -33,10 +43,15 @@ export const BOARD = {
         cards: [
           {
             id: 2,
-            title:<h1>Goblet Squats</h1>, 
-            description: <div>10 reps for 3 sets</div>
+            title: "Kettlebell Squat", 
+            sets: 3, 
+            reps: 10,
+            description: "some kind of description",
+            column_id: 2,
           },
         ]
       }
     ]
   }
+
+  export const DEFAULT_REST = 30;

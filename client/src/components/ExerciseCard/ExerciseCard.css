@@ -1,0 +1,7 @@
+.cardBody {
+    display: flex;
+    flex-flow: column;
+    background-color: bisque;
+    margin: 1em;
+    padding: 1em;
+}
