@@ -1,58 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FilterBar from '../FilterBar';
-import Board from '@lourenci/react-kanban'
+import Board, { moveCard } from '@lourenci/react-kanban'
+import {BOARD} from '../../constants/constant';
 import '@lourenci/react-kanban/dist/styles.css'
 import './BoardDisplay.css';
 
 function BoardDisplay(props) {
+  const [controlledBoard, setBoard] = useState(BOARD);
 
-const board = {
-    columns: [
-      {
-        id: 1,
-        title: 'To do',
-        cards: [
-          {
-            id: 1,
-            title:<h1>Kettlebell Cleans</h1>, 
-            description: <div>10 reps for 3 sets</div>
-          },
-        ]
-      },
-      {
-        id: 2,
-        title: 'Current Day',
-        cards: [
-          {
-            id: 2,
-            title:<h1>Kettlebell Swings</h1>, 
-            description: <div>10 reps for 3 sets</div>
-          },
-        ]
-      },
-      {
-        id: 3,
-        title: 'Done',
-        cards: [
-          {
-            id: 1,
-            title:<h1>Goblet Squats</h1>, 
-            description: <div>10 reps for 3 sets</div>
-          },
-        ]
-      }
-    ]
+  const handleCardMove = (_card, source, destination) => {
+    const updatedBoard = moveCard(controlledBoard, source, destination);
+    console.log(_card)
+    setBoard(updatedBoard);
   }
-
+  const handleRenderCard = ({ description }, { removeCard, dragging }) => (
+    <div dragging={dragging}>
+      {description}
+    </div>
+  )
     return (
         <div className='workoutBoard'>
           <FilterBar />
-            <Board
-              onCardDragEnd={(source) => console.log(source)}
-              moveCard={({ fromPosition, fromColumnId }) => console.log(fromPosition)}
-              initialBoard={board}
-              disableColumnDrag
-            />
+          <Board 
+            onCardDragEnd={handleCardMove} 
+            renderCard={handleRenderCard}
+            disableColumnDrag>
+            {controlledBoard}
+          </Board>
         </div>
     );
 }
