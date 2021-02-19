@@ -1,3 +1,10 @@
+:root{
+  --bg-color: #2E4172;
+  --col-color: #162955;
+  --card-color: #7887AB;
+  /* https://paletton.com/#uid=13L0u0kllllaFw0g0qFqFg0w0aF for color scheme, base RGB 2E4272 */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
 }
 
 code {

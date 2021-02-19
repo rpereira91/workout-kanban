@@ -4,3 +4,18 @@
     align-items: center;
     justify-content: center;
 }
+
+.controlDisplay{
+    display: flex;
+    flex-flow: row;
+    padding: 1em
+}
+
+.react-kanban-column {
+    background-color: var(--col-color);
+}
+
+.react-kanban-column-header span{
+    color: var(--card-color);
+    font-size: 1.5em;
+}

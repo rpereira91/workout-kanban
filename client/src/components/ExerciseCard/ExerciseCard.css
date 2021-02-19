@@ -1,7 +1,7 @@
 .cardBody {
     display: flex;
     flex-flow: column;
-    background-color: bisque;
+    background-color: var(--card-color);
     margin: 1em;
     padding: 1em;
 }

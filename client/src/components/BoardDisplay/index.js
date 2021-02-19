@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import FilterBar from '../FilterBar';
 import ExerciseCard from '../ExerciseCard';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Box from '@material-ui/core/Box';
+
 import Board, { moveCard } from '@lourenci/react-kanban'
 import {BOARD} from '../../constants/constant';
 import '@lourenci/react-kanban/dist/styles.css'
@@ -38,16 +42,24 @@ function BoardDisplay(props) {
     const updatedBoard = moveCard(controlledBoard, source, destination);
     setBoard(updatedBoard);
   }
-
+  const getPercentDone = () => {
+    var sum = 0;
+    controlledBoard.columns.forEach((column) => sum += column.cards.length)
+    return (controlledBoard.columns[2].cards.length/sum) * 100
+  }
   const handleRenderCard = (card, { removeCard, dragging }) => (
     <ExerciseCard exercise={card} moveCardToDone={moveCardToDone}/>
   )
     return (
         <div className='workoutBoard'>
           <FilterBar />
-          <button onClick={() => setBoard(BOARD)}>Reset</button>
-          {previousBoards.length > 1 && <button onClick={() => setBoard(previousBoards.pop())}>Undo</button>}
-          <span>{currentMessage}</span>
+          <div className="controlDisplay" >
+            <Button variant="contained" onClick={() => setControlledBoard(BOARD)}>Reset</Button>
+            {previousBoards.length > 1 && <Button variant="contained" onClick={() => setControlledBoard(previousBoards.pop())}>Undo</Button>}
+            <Box position="relative" display="inline-flex">
+              <CircularProgress variant="determinate" value={getPercentDone()} />
+            </Box>
+          </div>
           <Board 
             onCardDragEnd={handleCardMove} 
             renderCard={handleRenderCard}
