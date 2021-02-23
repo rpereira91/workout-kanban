@@ -1,7 +1,8 @@
 import {SET_BOARD} from './types';
+import {BOARD} from '../constants/constant';
 
 const INITAL_STATE = {
-    board: {columns:[]},
+    board: BOARD,
 }
 
 const workout_board = (state = INITAL_STATE, action) => {
