@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
+
 import FilterBar from '../FilterBar';
 import ExerciseCard from '../ExerciseCard';
 import Button from '@material-ui/core/Button';
@@ -50,6 +52,7 @@ function BoardDisplay(props) {
   const handleRenderCard = (card, { removeCard, dragging }) => (
     <ExerciseCard exercise={card} moveCardToDone={moveCardToDone}/>
   )
+  console.log(props.board)
     return (
         <div className='workoutBoard'>
           <FilterBar />
@@ -69,5 +72,5 @@ function BoardDisplay(props) {
         </div>
     );
 }
-
-export default BoardDisplay;
+const mapStateToProps = ({board}) => ({board});
+export default connect(mapStateToProps, {})(BoardDisplay);

@@ -35,12 +35,6 @@ export const BOARD = {
             rest: 60,
             column_id: 1,
           },
-        ]
-      },
-      {
-        id: 2,
-        title: 'Done',
-        cards: [
           {
             id: 2,
             title: "Kettlebell Squat", 
@@ -49,6 +43,13 @@ export const BOARD = {
             description: "some kind of description",
             column_id: 2,
           },
+        ]
+      },
+      {
+        id: 2,
+        title: 'Done',
+        cards: [
+          
         ]
       }
     ]
