@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react'
+import {connect} from 'react-redux';
 import Select from 'react-select'
+import * as boardActions from '../../redux/WorkoutBoard/actions';
+
 import './FilterBar.css';
 
-function FilterBar() {
+function FilterBar({getWorkouts, workouts}) {
     const [workoutSelected, setWorkoutSelected] = useState(null)
     const [splitSelected, setSplitSelected] = useState(null)
 
@@ -16,7 +19,12 @@ function FilterBar() {
         {value: 1, label: 'Pull'},
         {value: 2, label: 'Legs'},
     ]);
-    
+
+    useEffect( async () => {
+        await getWorkouts()
+        workouts.forEach((workout) => console.log(workout))
+     }, [] );
+
     return (
         <div className="filterBar">
             <div className="select">
@@ -33,5 +41,5 @@ function FilterBar() {
         </div>
     )
 }
-
-export default FilterBar
+const mapStateToProps = ({workouts}) => ({workouts});
+export default connect (mapStateToProps, {...boardActions}) (FilterBar)

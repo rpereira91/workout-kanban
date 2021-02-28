@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
 import Board, { moveCard } from '@lourenci/react-kanban'
 
-import * as boardActions from '../../redux/actions';
+import * as boardActions from '../../redux/WorkoutBoard/actions';
 
 import {BOARD} from '../../constants/constant';
 import {getPercentDone} from '../../constants/utils';
@@ -18,9 +18,9 @@ import './BoardDisplay.css';
 
 function BoardDisplay({setCurrentBoard, board}) {
 
-  const handleCardMove = (_card, source, destination) => {
+  const handleCardMove = async (_card, source, destination) => {
     const updatedBoard = moveCard(board, source, destination);
-    setCurrentBoard(updatedBoard);
+    await setCurrentBoard(updatedBoard);
   }
 
   const handleRenderCard = (card, { removeCard, dragging }) => (
