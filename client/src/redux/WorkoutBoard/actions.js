@@ -19,7 +19,7 @@ export const getWorkouts = () => (dispatch) => {
     EXERCISES.forEach((exercise) => {
         exercise_arr = [...exercise_arr, ...exercise.workouts]
     })
-    dispatch(setWorkouts(exercise_arr));
+    return dispatch(setWorkouts(Array.from(new Set(exercise_arr))));
 }
 
 export const setCurrentBoard = (currentBoard) => (dispatch) =>{

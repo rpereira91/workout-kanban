@@ -9,10 +9,7 @@ function FilterBar({getWorkouts, workouts}) {
     const [workoutSelected, setWorkoutSelected] = useState(null)
     const [splitSelected, setSplitSelected] = useState(null)
 
-    const [allWorkouts, setAllWorkouts] = useState([
-        {value: 0, label: 'Starting Strength'},
-        {value: 1, label: 'Mixed PPL'},
-    ]);
+    const [allWorkouts, setAllWorkouts] = useState(null);
 
     const [allSplits, setAllSplits] = useState([
         {value: 0, label: 'Push'},
@@ -21,16 +18,22 @@ function FilterBar({getWorkouts, workouts}) {
     ]);
 
     useEffect( async () => {
-        await getWorkouts()
-        workouts.forEach((workout) => console.log(workout))
+        await getWorkouts();
+        const currentWorkouts = []
+        workouts.forEach((workout, index) => {
+            currentWorkouts.push({
+                value: index, label:workout
+            })
+        })
+        setAllWorkouts(currentWorkouts)
      }, [] );
 
     return (
         <div className="filterBar">
-            <div className="select">
+            {(allWorkouts && allWorkouts.length > 0) && (<div className="select">
                 <span>{workoutSelected ? `Workout Selected: ${workoutSelected}`: `Select a workout: `}</span>
                 <Select options={allWorkouts} onChange={({label}) => setWorkoutSelected(label)}/>
-            </div>
+            </div>)}
             {workoutSelected && 
             (<div className="select">
                 <span> {splitSelected ? `Split Selected: ${splitSelected}`: `Select a split: `}</span>
