@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 
 import FilterBar from '../FilterBar';
@@ -16,11 +16,22 @@ import {getPercentDone} from '../../constants/utils';
 import '@lourenci/react-kanban/dist/styles.css'
 import './BoardDisplay.css';
 
-function BoardDisplay({setCurrentBoard, board}) {
+function BoardDisplay({setCurrentBoard, setBoard, board}) {
+  const [loadingBoad, setLoadingBoard] = useState(true);
+
+  useEffect(() => {
+    
+    const getBoard = async () => {
+      setLoadingBoard(true)
+      await setCurrentBoard()
+      setLoadingBoard(false)
+    }
+    getBoard()
+  }, [])
 
   const handleCardMove = async (_card, source, destination) => {
     const updatedBoard = moveCard(board, source, destination);
-    await setCurrentBoard(updatedBoard);
+    await setBoard(updatedBoard);
   }
 
   const handleRenderCard = (card, { removeCard, dragging }) => (
@@ -30,17 +41,24 @@ function BoardDisplay({setCurrentBoard, board}) {
         <div className='workoutBoard'>
           <FilterBar />
           <div className="controlDisplay" >
-            <Button variant="contained" onClick={() => setCurrentBoard(BOARD)}>Reset</Button>
+            <Button variant="contained" onClick={() => setBoard(BOARD)}>Reset</Button>
             <Box position="relative" display="inline-flex">
               <CircularProgress variant="determinate" value={getPercentDone(board)} />
             </Box>
           </div>
-          <Board 
-            onCardDragEnd={handleCardMove} 
-            renderCard={handleRenderCard}
-            disableColumnDrag>
-            {board}
-          </Board>
+          {
+            loadingBoad ? (
+              <div>Loading</div>
+            ) :
+            (
+              <Board 
+                onCardDragEnd={handleCardMove} 
+                renderCard={handleRenderCard}
+                disableColumnDrag>
+                {board}
+              </Board>
+            )
+          }
         </div>
     );
 }
