@@ -59,6 +59,7 @@ export const DEFAULT_REST = 30;
 
 export const EXERCISES = [
   {
+    id: 0,
     exercise_name: 'Kettlebell Swing',
     splits: ['Pull', ],
     workouts: ['March - June 2021'],
@@ -66,33 +67,36 @@ export const EXERCISES = [
     default_sets: 10,
     equipment: ['Kettlebell', 'Dumbell'],
     notes: 'One handed or two handed',
-    state: 0,
+    column: 0,
   },
   {
+    id: 1,
     exercise_name: 'Kettlebell Squat',
     splits: ['Legs', ],
     workouts: ['March - June 2021'],
     default_reps: 10,
     default_sets: 10,
     equipment: ['Kettlebell', 'Dumbell'],
-    state: 0,
+    column: 0,
   },
   {
+    id: 2,
     exercise_name: 'Kettlebell Clean',
     splits: ['Push', ],
     workouts: ['March - June 2021'],
     default_reps: 10,
     default_sets: 10,
     equipment: ['Kettlebell', 'Dumbell'], 
-    state: 1,
+    column: 1,
   },
   {
+    id: 3,
     exercise_name: 'Kettlebell Snatch',
     splits: ['Pull', ],
     workouts: ['March - June 2021'],
     default_reps: 10,
     default_sets: 5,
     equipment: ['Kettlebell', 'Dumbell'], 
-    state: 0,
+    column: 0,
   },
 ]

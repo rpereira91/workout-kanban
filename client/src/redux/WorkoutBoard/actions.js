@@ -1,5 +1,6 @@
 import {SET_BOARD, SET_WORKOUTS} from './types';
 import {EXERCISES} from '../../constants/constant'
+import {builtBoard} from '../../constants/utils';
 export const setBoard = (board) => {
     return {
         type: SET_BOARD,

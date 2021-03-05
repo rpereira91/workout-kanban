@@ -3,3 +3,29 @@ export const getPercentDone = (board) => {
     board.columns.forEach((column) => sum += column.cards.length)
     return (board.columns[2].cards.length/sum) * 100
 }
+
+export const builtBoard = (exercises) => {
+    const baseWorkoutBoard = {
+        columns: [
+            {
+                id: 0,
+                title: 'To Do',
+                cards: []
+            },
+            {
+                id: 1,
+                title: 'Current Day',
+                cards: []
+            },
+            {
+                id: 2,
+                title: 'Done',
+                cards: []
+            },
+        ]
+    }
+    exercises.forEach((exercise) => {
+        console.log(baseWorkoutBoard.columns[exercise.state])
+        console.log(exercise)
+    })
+}
