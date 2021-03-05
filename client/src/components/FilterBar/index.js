@@ -5,7 +5,7 @@ import * as boardActions from '../../redux/WorkoutBoard/actions';
 
 import './FilterBar.css';
 
-function FilterBar({getWorkouts, workouts}) {
+function FilterBar({getTags, workouts}) {
     const [workoutSelected, setWorkoutSelected] = useState(null)
     const [splitSelected, setSplitSelected] = useState(null)
 
@@ -18,7 +18,7 @@ function FilterBar({getWorkouts, workouts}) {
     ]);
 
     useEffect( async () => {
-        await getWorkouts();
+        await getTags();
         const currentWorkouts = []
         workouts.forEach((workout, index) => {
             currentWorkouts.push({

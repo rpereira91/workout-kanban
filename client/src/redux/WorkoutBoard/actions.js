@@ -15,15 +15,16 @@ export const setWorkouts = (workouts) => {
     }
 }
 
-export const getWorkouts = () => (dispatch) => {
-    var exercise_arr = []
+export const getTags = () => (dispatch) => {
+    var tags_arr = []
     EXERCISES.forEach((exercise) => {
-        exercise_arr = [...exercise_arr, ...exercise.workouts]
+        tags_arr = [...tags_arr, ...exercise.tags]
     })
-    return dispatch(setWorkouts(Array.from(new Set(exercise_arr))));
+    return dispatch(setWorkouts(Array.from(new Set(tags_arr))));
 }
 
-export const setCurrentBoard = (currentBoard) => (dispatch) =>{
-    console.log("moving board")
+export const setCurrentBoard = () => (dispatch) =>{
+    //api call to get all the exercises here
+    const currentBoard = builtBoard(EXERCISES) 
     return dispatch(setBoard(currentBoard));
 }

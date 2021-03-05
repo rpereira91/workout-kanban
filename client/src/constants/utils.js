@@ -25,7 +25,10 @@ export const builtBoard = (exercises) => {
         ]
     }
     exercises.forEach((exercise) => {
-        console.log(baseWorkoutBoard.columns[exercise.state])
-        console.log(exercise)
+        // console.log(baseWorkoutBoard.columns[exercise.state])
+        const currentColumn = exercise.column
+        const cards = baseWorkoutBoard.columns[currentColumn].cards;
+        baseWorkoutBoard.columns[currentColumn].cards = [...cards, exercise]
     })
+    return baseWorkoutBoard
 }
