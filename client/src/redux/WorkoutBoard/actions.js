@@ -1,6 +1,7 @@
 import {SET_BOARD, SET_TAGS, SET_SELECTED_TAGS} from './types';
 import {EXERCISES} from '../../constants/constant'
 import {builtBoard} from '../../constants/utils';
+import {filter} from 'lodash'
 export const setBoard = (board) => {
     return {
         type: SET_BOARD,
@@ -26,7 +27,7 @@ export const modifySelecedTag = (tag) => (dispatch, getState) =>{
     const {selectedTags} = getState()
     let newSelectedTags = []
     if (selectedTags.includes(tag)) {
-        newSelectedTags =[...selectedTags.filter(t=>t !== tag)]
+        newSelectedTags =[...filter(selectedTags, (t) => t !== tag)]
     } else {
         newSelectedTags = [...selectedTags, tag]
     }
