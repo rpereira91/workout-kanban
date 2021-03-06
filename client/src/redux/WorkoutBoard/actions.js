@@ -22,9 +22,14 @@ export const setSelectedTags = (selectedTags) => {
     }
 }
 
-export const addSelectedTag = (tag) => (dispatch, getState) =>{
+export const modifySelecedTag = (tag) => (dispatch, getState) =>{
     const {selectedTags} = getState()
-    const newSelectedTags = [...selectedTags, tag]
+    let newSelectedTags = []
+    if (selectedTags.includes(tag)) {
+        newSelectedTags =[...selectedTags.filter(t=>t !== tag)]
+    } else {
+        newSelectedTags = [...selectedTags, tag]
+    }
     dispatch(setSelectedTags(newSelectedTags))
 }
 

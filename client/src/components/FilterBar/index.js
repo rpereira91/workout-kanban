@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux';
 import Select from 'react-select'
 import * as boardActions from '../../redux/WorkoutBoard/actions';
-import {Chip} from '@material-ui/core';
+import {Chip, } from '@material-ui/core';
 
 import './FilterBar.css';
 
-function FilterBar({getTags, tags, addSelectedTag, selectedTags}) {
+function FilterBar({getTags, tags, modifySelecedTag, selectedTags}) {
 
     const [allTags, setTags] = useState(null);
     const [loadingTags, setLoadingTags] = useState(true)
@@ -30,7 +30,6 @@ function FilterBar({getTags, tags, addSelectedTag, selectedTags}) {
                 })
             })
             setTags(currentTags)
-            console.log(currentTags)
         }
      }, [tags] );
 
@@ -41,13 +40,18 @@ function FilterBar({getTags, tags, addSelectedTag, selectedTags}) {
                     <div>
                         <div className="select">
                             {selectedTags.length > 0 && (
-                                selectedTags.map((tag) => <Chip label={tag} />)
+                                selectedTags.map((tag, index) => 
+                                <Chip         
+                                    onDelete={() => modifySelecedTag(tag)}
+                                    deleteIcon={<i>X</i>}
+                                    label={tag} 
+                                />)
                             )}
                         </div>
             
                         {(allTags) && (
                             <div className="select">
-                                <Select options={allTags} onChange={({label}) => addSelectedTag(label)}/>
+                                <Select options={allTags} onChange={({label}) => modifySelecedTag(label)}/>
                             </div>
                         )}
                     </div>
