@@ -26,13 +26,15 @@ function FilterBar({getTags, tags, modifySelecedTag, selectedTags}) {
         const currentTags = []
         if (tags.length > 0) {
             tags.forEach((tag, index) => {
-                currentTags.push({
-                    value: index, label:tag
-                })
+                if (!selectedTags.includes(tag)){
+                    currentTags.push({
+                        value: index, label:tag
+                    })
+                }
             })
             setTags(currentTags)
         }
-     }, [tags] );
+     }, [tags, selectedTags] );
 
     return (
         <div className="filterBar">
@@ -42,17 +44,20 @@ function FilterBar({getTags, tags, modifySelecedTag, selectedTags}) {
                         <div className="tags">
                             {selectedTags.length > 0 && (
                                 selectedTags.map((tag, index) => 
-                                <Chip         
-                                    onDelete={() => modifySelecedTag(tag)}
-                                    deleteIcon={<CloseIcon />}
-                                    label={<span className="tagIcon">{tag}</span>} 
-                                />)
+                                <div className="tagIconWrapper">
+                                    <Chip         
+                                        onDelete={() => modifySelecedTag(tag)}
+                                        deleteIcon={<CloseIcon />}
+                                        label={<span className="tagIcon">{tag}</span>} 
+                                    />
+                                </div>
+                            )
                             )}
                         </div>
             
                         {(allTags) && (
                             <div className="select">
-                                <Select options={allTags} onChange={({label}) => modifySelecedTag(label)}/>
+                                <Select value={null} options={allTags} onChange={({label}) => modifySelecedTag(label)}/>
                             </div>
                         )}
                     </div>

@@ -42,8 +42,9 @@ export const getTags = () => (dispatch) => {
     return dispatch(setTags(Array.from(new Set(tags_arr))));
 }
 
-export const setCurrentBoard = () => (dispatch) =>{
+export const setCurrentBoard = () => (dispatch, getState) =>{
+    const {selectedTags} = getState();
     //api call to get all the exercises here
-    const currentBoard = builtBoard(EXERCISES) 
+    const currentBoard = builtBoard(EXERCISES, selectedTags) 
     return dispatch(setBoard(currentBoard));
 }

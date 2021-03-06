@@ -5,6 +5,7 @@ const INITAL_STATE = {
     board: BOARD,
     tags: [],
     selectedTags: [],
+    exercises: [],
 }
 
 const workout_board = (state = INITAL_STATE, action) => {

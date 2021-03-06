@@ -16,18 +16,17 @@ import {getPercentDone} from '../../constants/utils';
 import '@lourenci/react-kanban/dist/styles.css'
 import './BoardDisplay.css';
 
-function BoardDisplay({setCurrentBoard, setBoard, board}) {
+function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags}) {
   const [loadingBoad, setLoadingBoard] = useState(true);
 
   useEffect(() => {
-    
     const getBoard = async () => {
       setLoadingBoard(true)
       await setCurrentBoard()
       setLoadingBoard(false)
     }
     getBoard()
-  }, [])
+  }, [selectedTags])
 
   const handleCardMove = async (_card, source, destination) => {
     const updatedBoard = moveCard(board, source, destination);
@@ -62,5 +61,5 @@ function BoardDisplay({setCurrentBoard, setBoard, board}) {
         </div>
     );
 }
-const mapStateToProps = ({board}) => ({board});
+const mapStateToProps = ({board, selectedTags}) => ({board, selectedTags});
 export default connect(mapStateToProps, {...boardActions})(BoardDisplay);

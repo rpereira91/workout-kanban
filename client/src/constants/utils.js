@@ -1,10 +1,12 @@
+import {forEach} from 'lodash';
+
 export const getPercentDone = (board) => {
     var sum = 0;
     board.columns.forEach((column) => sum += column.cards.length)
     return (board.columns[2].cards.length/sum) * 100
 }
 
-export const builtBoard = (exercises) => {
+export const builtBoard = (exercises, selectedTags) => {
     const baseWorkoutBoard = {
         columns: [
             {
@@ -25,10 +27,26 @@ export const builtBoard = (exercises) => {
         ]
     }
     exercises.forEach((exercise) => {
-        // console.log(baseWorkoutBoard.columns[exercise.state])
-        const currentColumn = exercise.column
-        const cards = baseWorkoutBoard.columns[currentColumn].cards;
-        baseWorkoutBoard.columns[currentColumn].cards = [...cards, exercise]
+        if(tagInSelected(selectedTags, exercise.tags)){
+            const currentColumn = exercise.column
+            const cards = baseWorkoutBoard.columns[currentColumn].cards;
+            baseWorkoutBoard.columns[currentColumn].cards = [...cards, exercise]
+        }
     })
     return baseWorkoutBoard
+}
+
+const tagInSelected = (selectedTags, exerciseTags) => {
+    if (selectedTags.length === 0) {
+        return true;
+    }
+    let contains = false;
+    forEach(selectedTags, (t) => {
+        forEach(exerciseTags, (tag) => {
+            if (t === tag) {
+                contains = true
+            }
+        })
+    })
+    return contains
 }
