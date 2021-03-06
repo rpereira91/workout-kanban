@@ -1,5 +1,6 @@
-import {SET_BOARD, SET_TAGS, SET_SELECTED_TAGS} from './types';
+import {SET_BOARD, SET_TAGS, SET_SELECTED_TAGS, SET_EXERCIESES} from './types';
 import {BOARD} from '../../constants/constant';
+import {EXERCISES} from '../../constants/constant'
 
 const INITAL_STATE = {
     board: BOARD,
@@ -24,6 +25,11 @@ const workout_board = (state = INITAL_STATE, action) => {
             return {
                 ...state, 
                 selectedTags: action.payload,
+            }
+        case SET_EXERCIESES:
+            return {
+                ...state, 
+                exercises: action.payload,
             }
         default:
             return state;

@@ -1,4 +1,4 @@
-import {SET_BOARD, SET_TAGS, SET_SELECTED_TAGS} from './types';
+import {SET_BOARD, SET_TAGS, SET_SELECTED_TAGS, SET_EXERCIESES} from './types';
 import {EXERCISES} from '../../constants/constant'
 import {builtBoard} from '../../constants/utils';
 import {filter} from 'lodash'
@@ -23,6 +23,14 @@ export const setSelectedTags = (selectedTags) => {
     }
 }
 
+export const setExercieses = (exercises) => {
+    console.log(exercises)
+    return {
+        type: SET_EXERCIESES, 
+        payload: exercises
+    }
+}
+
 export const modifySelecedTag = (tag) => (dispatch, getState) =>{
     const {selectedTags} = getState()
     let newSelectedTags = []
@@ -42,9 +50,13 @@ export const getTags = () => (dispatch) => {
     return dispatch(setTags(Array.from(new Set(tags_arr))));
 }
 
-export const setCurrentBoard = () => (dispatch, getState) =>{
-    const {selectedTags} = getState();
-    //api call to get all the exercises here
-    const currentBoard = builtBoard(EXERCISES, selectedTags) 
-    return dispatch(setBoard(currentBoard));
+export const setCurrentBoard = (callBack = () => {}) => (dispatch, getState) =>{
+    const {selectedTags, exercises} = getState();
+    if (exercises.length === 0) {
+        //api call to get all the exercises here
+        dispatch(setExercieses(EXERCISES))
+    }
+    const currentBoard = builtBoard(exercises.length === 0 ? exercises : EXERCISES, selectedTags) 
+    dispatch(setBoard(currentBoard));
+    callBack()
 }

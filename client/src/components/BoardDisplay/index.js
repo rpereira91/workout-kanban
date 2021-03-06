@@ -22,8 +22,7 @@ function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags}) {
   useEffect(() => {
     const getBoard = async () => {
       setLoadingBoard(true)
-      await setCurrentBoard()
-      setLoadingBoard(false)
+      await setCurrentBoard(setLoadingBoard(false))
     }
     getBoard()
   }, [selectedTags])
