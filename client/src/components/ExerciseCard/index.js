@@ -11,7 +11,7 @@ function ExerciseCard({exercise, moveCardToDone}) {
             <span>Do {default_sets} sets for {default_reps} reps</span>
             <span>Rest for {rest ? rest : DEFAULT_REST} seconds</span>
             <div>
-                {tags.map((tag) => <Chip label={tag} />)}
+                {tags.map((tag, index) => <Chip key={`tag_key_${index}`} label={tag} />)}
             </div>
         </div>
     )

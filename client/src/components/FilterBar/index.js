@@ -44,7 +44,7 @@ function FilterBar({getTags, tags, modifySelecedTag, selectedTags}) {
                         <div className="tags">
                             {selectedTags.length > 0 && (
                                 selectedTags.map((tag, index) => 
-                                <div className="tagIconWrapper">
+                                <div className="tagIconWrapper" key={`icon_wrapper_${index}`}>
                                     <Chip         
                                         onDelete={() => modifySelecedTag(tag)}
                                         deleteIcon={<CloseIcon />}

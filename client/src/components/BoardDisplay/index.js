@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-
+import {filter} from 'lodash';
 import FilterBar from '../FilterBar';
 import ExerciseCard from '../ExerciseCard';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
-import Board, { moveCard } from '@lourenci/react-kanban'
+import Board from '@lourenci/react-kanban'
 
 import * as boardActions from '../../redux/WorkoutBoard/actions';
 
@@ -16,7 +16,7 @@ import {getPercentDone} from '../../constants/utils';
 import '@lourenci/react-kanban/dist/styles.css'
 import './BoardDisplay.css';
 
-function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags}) {
+function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags, moveExercise}) {
   const [loadingBoad, setLoadingBoard] = useState(true);
 
   useEffect(() => {
@@ -28,8 +28,9 @@ function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags}) {
   }, [selectedTags])
 
   const handleCardMove = async (_card, source, destination) => {
-    const updatedBoard = moveCard(board, source, destination);
-    await setBoard(updatedBoard);
+    await moveExercise(_card.id, destination.toColumnId)
+    // const updatedBoard = moveCard(board, source, destination);
+    // await setBoard(board);
   }
 
   const handleRenderCard = (card, { removeCard, dragging }) => (
