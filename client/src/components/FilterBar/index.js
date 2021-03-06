@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Select from 'react-select'
 import * as boardActions from '../../redux/WorkoutBoard/actions';
 import {Chip, } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 
 import './FilterBar.css';
 
@@ -38,13 +39,13 @@ function FilterBar({getTags, tags, modifySelecedTag, selectedTags}) {
             {
                 loadingTags ? (<div>Loading</div>) : (
                     <div>
-                        <div className="select">
+                        <div className="tags">
                             {selectedTags.length > 0 && (
                                 selectedTags.map((tag, index) => 
                                 <Chip         
                                     onDelete={() => modifySelecedTag(tag)}
-                                    deleteIcon={<i>X</i>}
-                                    label={tag} 
+                                    deleteIcon={<CloseIcon />}
+                                    label={<span className="tagIcon">{tag}</span>} 
                                 />)
                             )}
                         </div>

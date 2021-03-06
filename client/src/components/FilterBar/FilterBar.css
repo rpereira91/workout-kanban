@@ -9,3 +9,13 @@
     width: 10em;
     padding: 0em 1em
 }
+.tags{
+    display: flex;
+    flex-flow: row;
+    align-items: flex-end;
+    padding: 2em 3em;
+    width:100%;
+}
+.tagIcon{
+    font-size: 1em;
+}
