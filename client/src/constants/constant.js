@@ -71,7 +71,7 @@ export const EXERCISES = [
   {
     id: 1,
     exercise_name: 'Kettlebell Squat',
-    tags: ['Push', ],
+    tags: ['Legs', ],
     default_reps: 10,
     default_sets: 10,
     equipment: ['Kettlebell', 'Dumbell'],
@@ -97,5 +97,15 @@ export const EXERCISES = [
     equipment: ['Kettlebell', 'Dumbell'],
     notes: ['Moved from Do Today to To Do on 04/03/2021 at 2:12pm'],
     column: 0,
+  },
+  {
+    id: 4,
+    exercise_name: 'Inside/Outside circles',
+    tags: ['Club', ],
+    default_reps: 10,
+    default_sets: 10,
+    equipment: ['Clubbell', 'Kettlebell'],
+    notes: ['Moved from Do Today to To Do on 04/03/2021 at 2:12pm'],
+    column: 2,
   },
 ]

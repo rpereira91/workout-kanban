@@ -1,2 +1,3 @@
 export const SET_BOARD = 'SET_BOARD';
-export const SET_WORKOUTS = 'SET_WORKOUTS'
+export const SET_TAGS = 'SET_TAGS'
+export const SET_SELECTED_TAGS = 'SET_SELECTED_TAGS'

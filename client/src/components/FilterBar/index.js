@@ -2,47 +2,60 @@ import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux';
 import Select from 'react-select'
 import * as boardActions from '../../redux/WorkoutBoard/actions';
+import {Chip} from '@material-ui/core';
 
 import './FilterBar.css';
 
-function FilterBar({getTags, workouts}) {
-    const [workoutSelected, setWorkoutSelected] = useState(null)
-    const [splitSelected, setSplitSelected] = useState(null)
+function FilterBar({getTags, tags, addSelectedTag, selectedTags}) {
 
-    const [allWorkouts, setAllWorkouts] = useState(null);
+    const [allTags, setTags] = useState(null);
+    const [loadingTags, setLoadingTags] = useState(true)
 
-    const [allSplits, setAllSplits] = useState([
-        {value: 0, label: 'Push'},
-        {value: 1, label: 'Pull'},
-        {value: 2, label: 'Legs'},
-    ]);
-
-    useEffect( async () => {
-        await getTags();
-        const currentWorkouts = []
-        workouts.forEach((workout, index) => {
-            currentWorkouts.push({
-                value: index, label:workout
+    useEffect(() => {
+        
+        const getAllTags = async () => {
+            setLoadingTags(true)
+            await getTags()
+            setLoadingTags(false)
+        }
+        getAllTags()
+    }, [])
+    
+    useEffect(() => {
+        const currentTags = []
+        if (tags.length > 0) {
+            tags.forEach((tag, index) => {
+                currentTags.push({
+                    value: index, label:tag
+                })
             })
-        })
-        setAllWorkouts(currentWorkouts)
-     }, [] );
+            setTags(currentTags)
+            console.log(currentTags)
+        }
+     }, [tags] );
 
     return (
         <div className="filterBar">
-            {(allWorkouts && allWorkouts.length > 0) && (<div className="select">
-                <span>{workoutSelected ? `Workout Selected: ${workoutSelected}`: `Select a workout: `}</span>
-                <Select options={allWorkouts} onChange={({label}) => setWorkoutSelected(label)}/>
-            </div>)}
-            {workoutSelected && 
-            (<div className="select">
-                <span> {splitSelected ? `Split Selected: ${splitSelected}`: `Select a split: `}</span>
-                <Select options={allSplits} onChange={({label}) => setSplitSelected(label)}/>
-            </div> )
+            {
+                loadingTags ? (<div>Loading</div>) : (
+                    <div>
+                        <div className="select">
+                            {selectedTags.length > 0 && (
+                                selectedTags.map((tag) => <Chip label={tag} />)
+                            )}
+                        </div>
+            
+                        {(allTags) && (
+                            <div className="select">
+                                <Select options={allTags} onChange={({label}) => addSelectedTag(label)}/>
+                            </div>
+                        )}
+                    </div>
+                )
             }
 
         </div>
     )
 }
-const mapStateToProps = ({workouts}) => ({workouts});
+const mapStateToProps = ({tags, selectedTags}) => ({tags, selectedTags});
 export default connect (mapStateToProps, {...boardActions}) (FilterBar)
