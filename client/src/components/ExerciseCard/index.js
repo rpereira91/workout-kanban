@@ -28,8 +28,8 @@ function ExerciseCard({exercise, moveCard}) {
                 <div className="showMore">
                     <ArrowBackIosIcon onClick={() => moveCard(id, prevColumnId)}/>
                     <div className="moreInfoBody">
-                        <span>Do {default_sets} sets for {default_reps} reps</span>
-                        <span>Rest for {rest ? rest : DEFAULT_REST} seconds</span>
+                        <span className="info">Do {default_sets} sets for {default_reps} reps</span>
+                        <span className="info">Rest for {rest ? rest : DEFAULT_REST} seconds</span>
                         <div className="tagWrapper">
                             {tags.map((tag, index) => (
                                 <span className="tagIcon">
