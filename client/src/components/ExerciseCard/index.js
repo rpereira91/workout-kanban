@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Chip} from '@material-ui/core';
-import { Modal, List } from 'antd';
+import { Modal, List, Tooltip } from 'antd';
 import Select from 'react-select';
 
 // icons
@@ -44,7 +44,7 @@ function ExerciseCard({exercise, moveCard}) {
                 visible={showMore} 
                 title={(
                     <div className="modalHeader">
-                        {exercise_name}{editExercise ? <SaveIcon onClick={() => setEditExercise(false)}/> : <CreateIcon onClick={() => setEditExercise(true)}/>}
+                        {exercise_name}{editExercise ?   <Tooltip title="prompt text"><SaveIcon onClick={() => setEditExercise(false)}/></Tooltip> : <CreateIcon onClick={() => setEditExercise(true)}/>}
                     </div>
                 )}
                 wrapClassName="modalWrapper"
