@@ -1,5 +1,5 @@
 import {forEach} from 'lodash';
-
+import {COLUMNS} from './board';
 export const getPercentDone = (board) => {
     var sum = 0;
     board.columns.forEach((column) => sum += column.cards.length)
@@ -49,4 +49,12 @@ const tagInSelected = (selectedTags, exerciseTags) => {
         })
     })
     return contains
+}
+
+export const getNextColumn = (currentColumn) => {
+    return currentColumn < COLUMNS.length - 1 ? currentColumn + 1 : 0
+}
+
+export const getPrevColumn = (currentColumn) => {
+    return currentColumn - 1 > 0  ? currentColumn - 1 : COLUMNS.length - 1;
 }
