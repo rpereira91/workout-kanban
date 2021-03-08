@@ -7,6 +7,7 @@ import Select from 'react-select';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import CreateIcon from '@material-ui/icons/Create';
+import SaveIcon from '@material-ui/icons/Save';
 
 import {DEFAULT_REST} from '../../constants/constant';
 
@@ -16,6 +17,7 @@ function ExerciseCard({exercise, moveCard}) {
     const {id, exercise_name, default_sets, default_reps, tags, rest, column, notes} = exercise;
     const [showMore, setMore] = useState(false);
     const [notesIndex, setNotesIndex] = useState(3);
+    const [editExercise, setEditExercise] = useState(false);
     const nextColumnId = getNextColumn(column)
     const prevColumnId = getPrevColumn(column)
     const getTagSelect = () => {
@@ -30,7 +32,11 @@ function ExerciseCard({exercise, moveCard}) {
             <span>{exercise_name}</span>
             <Modal 
                 visible={showMore} 
-                title={(<div className="modalHeader">{exercise_name}<CreateIcon /></div>)}
+                title={(
+                    <div className="modalHeader">
+                        {exercise_name}{editExercise ? <SaveIcon onClick={() => setEditExercise(false)}/> : <CreateIcon onClick={() => setEditExercise(true)}/>}
+                    </div>
+                )}
                 wrapClassName="modalWrapper"
                 footer={[<Button onClick={() => setMore(false)}>Show Less</Button>,]}
                 onCancel={() => setMore(false)}
@@ -41,18 +47,25 @@ function ExerciseCard({exercise, moveCard}) {
                     <div className="moreInfoBody">
                         <span className="info">Do {default_sets} sets for {default_reps} reps</span>
                         <span className="info">Rest for {rest ? rest : DEFAULT_REST} seconds</span>
-                        <Select
-                            defaultValue={getTagSelect()}
-                            isMulti
-                        />
-                        <div className="tagWrapper">
-                            {tags.map((tag, index) => (
-                                <span className="tagIcon">
-                                    <Chip key={`tag_key_${index}`} label={tag} />
-                                </span>
-                            ))
+                        {
+                            editExercise ? (
+                                <Select
+                                    defaultValue={getTagSelect()}
+                                    isMulti
+                                />
+
+                            ) : (
+                            <div className="tagWrapper">
+                                {tags.map((tag, index) => (
+                                    <span className="tagIcon">
+                                        <Chip key={`tag_key_${index}`} label={tag} />
+                                    </span>
+                                ))
+                            }
+                            </div>
+
+                            )
                         }
-                        </div>
                         <List
                             size="small"
                             header={<div>Notes</div>}
