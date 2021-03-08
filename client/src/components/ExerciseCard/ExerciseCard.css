@@ -4,4 +4,27 @@
     background-color: var(--card-color);
     margin: 1em;
     padding: 1em;
+    width: 15em
+}
+.showMore {
+  display: grid;
+  grid-template-columns: 0.3fr 2.4fr 0.3fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . .";
+}
+.modalWrapper{
+    z-index: 10;
+}
+.tagWrapper {
+    display: flex;
+    flex-flow: row;
+}
+.tagIcon {
+    padding: 0.1em
+}
+.moreInfoBody {
+    display: flex;
+    flex-flow: column;
 }

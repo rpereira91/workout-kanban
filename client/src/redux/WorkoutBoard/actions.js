@@ -1,7 +1,9 @@
 import {SET_BOARD, SET_TAGS, SET_SELECTED_TAGS, SET_EXERCIESES, LOADING_BOARD} from './types';
-import {EXERCISES} from '../../constants/constant'
+import {EXERCISES} from '../../constants/constant';
+import {COLUMNS} from '../../constants/board';
 import {builtBoard} from '../../constants/utils';
-import {filter, forEach, find} from 'lodash'
+import {filter, forEach, find} from 'lodash';
+import moment from 'moment';
 export const setBoard = (board) => {
     return {
         type: SET_BOARD,
@@ -72,10 +74,11 @@ export const moveExercise = (exerciseId, columnId) => (dispatch, getState) => {
     const {exercises, selectedTags} = getState();
     let newExercises = filter(exercises, (ex) => ex.id !== exerciseId)
     let newCard = find(exercises, (ex) => ex.id === exerciseId)
+    const note = `Moved from ${COLUMNS[newCard.column].label} to ${COLUMNS[columnId].label} on ${moment(Date.now()).format('Do MMMM YYYY [at] hh:mm a')}`
+    newCard.notes = [note, ...newCard.notes]
     newCard.column = columnId
     newExercises = [...newExercises, newCard]
     const currentBoard = builtBoard(newExercises, selectedTags) 
     dispatch(setExercieses(newExercises));
     dispatch(setBoard(currentBoard));
-    // dispatch(setLoadingBoard(true))
 }

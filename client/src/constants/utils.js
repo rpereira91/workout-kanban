@@ -56,5 +56,5 @@ export const getNextColumn = (currentColumn) => {
 }
 
 export const getPrevColumn = (currentColumn) => {
-    return currentColumn - 1 > 0  ? currentColumn - 1 : COLUMNS.length - 1;
+    return currentColumn - 1 >= 0  ? currentColumn - 1 : COLUMNS.length - 1;
 }

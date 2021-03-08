@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {filter} from 'lodash';
+import { Modal } from 'antd';
 import FilterBar from '../FilterBar';
 import ExerciseCard from '../ExerciseCard';
 import Button from '@material-ui/core/Button';
@@ -50,12 +50,14 @@ function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags, moveExerc
               <div>Loading</div>
             ) :
             (
-              <Board 
-                onCardDragEnd={handleCardMove} 
-                renderCard={handleRenderCard}
-                disableColumnDrag>
-                {board}
-              </Board>
+              <div className="displayBoard">
+                <Board 
+                  onCardDragEnd={handleCardMove} 
+                  renderCard={handleRenderCard}
+                  disableColumnDrag>
+                  {board}
+                </Board>
+              </div>
             )
           }
         </div>
