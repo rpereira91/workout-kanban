@@ -14,15 +14,25 @@ import {DEFAULT_REST} from '../../constants/constant';
 import {getNextColumn, getPrevColumn} from '../../constants/utils';
 import './ExerciseCard.css'
 function ExerciseCard({exercise, moveCard}) {
-    const {id, exercise_name, default_sets, default_reps, tags, rest, column, notes} = exercise;
+    const {
+        id, 
+        exercise_name, 
+        default_sets, 
+        default_reps, 
+        tags, 
+        rest, 
+        column, 
+        notes, 
+        equipment, 
+    } = exercise;
     const [showMore, setMore] = useState(false);
     const [notesIndex, setNotesIndex] = useState(3);
     const [editExercise, setEditExercise] = useState(false);
     const nextColumnId = getNextColumn(column)
     const prevColumnId = getPrevColumn(column)
-    const getTagSelect = () => {
+    const getSelect = (objects) => {
         const tagSelect = []
-        tags.forEach(tag => {
+        objects.forEach(tag => {
             tagSelect.push({label: tag, value: tag})
         });
         return tagSelect;
@@ -50,22 +60,34 @@ function ExerciseCard({exercise, moveCard}) {
                         {
                             editExercise ? (
                                 <Select
-                                    defaultValue={getTagSelect()}
+                                    defaultValue={getSelect(tags)}
                                     isMulti
                                 />
 
                             ) : (
-                            <div className="tagWrapper">
-                                {tags.map((tag, index) => (
-                                    <span className="tagIcon">
-                                        <Chip key={`tag_key_${index}`} label={tag} />
-                                    </span>
-                                ))
-                            }
-                            </div>
-
+                                <div>
+                                    <span>Tags</span>
+                                    <div className="tagWrapper">
+                                        {tags.map((tag, index) => (
+                                            <span className="tagIcon">
+                                                <Chip key={`tag_key_${index}`} label={tag} />
+                                            </span>
+                                        ))
+                                    }
+                                    </div>
+                                </div>
                             )
                         }
+                                                    
+                        <span>Equipment</span>
+                        <div className="tagWrapper">
+                            {equipment.map((eq, index) => (
+                                <span className="tagIcon">
+                                    <Chip key={`eq_key_${index}`} label={eq} />
+                                </span>
+                            ))
+                            }
+                        </div>
                         <List
                             size="small"
                             header={<div>Notes</div>}
