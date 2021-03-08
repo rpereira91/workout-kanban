@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import FilterBar from '../FilterBar';
+import ControlBar from '../ControlBar';
 import ExerciseCard from '../ExerciseCard';
 import Board from '@lourenci/react-kanban'
 
@@ -34,6 +35,7 @@ function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags, moveExerc
           <h1>Current Board</h1>
           <FilterBar />
           <div className="controlDisplay" >
+            <ControlBar />
           </div>
           {
             loadingBoad ? (
