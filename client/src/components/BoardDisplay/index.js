@@ -1,17 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import { Modal } from 'antd';
 import FilterBar from '../FilterBar';
 import ExerciseCard from '../ExerciseCard';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Box from '@material-ui/core/Box';
 import Board from '@lourenci/react-kanban'
 
 import * as boardActions from '../../redux/WorkoutBoard/actions';
-
-import {BOARD} from '../../constants/constant';
-import {getPercentDone} from '../../constants/utils';
 
 import '@lourenci/react-kanban/dist/styles.css'
 import './BoardDisplay.css';
@@ -38,12 +31,9 @@ function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags, moveExerc
   )
     return (
         <div className='workoutBoard'>
+          <h1>Current Board</h1>
           <FilterBar />
           <div className="controlDisplay" >
-            <Button variant="contained" onClick={() => setBoard(BOARD)}>Reset</Button>
-            <Box position="relative" display="inline-flex">
-              <CircularProgress variant="determinate" value={getPercentDone(board)} />
-            </Box>
           </div>
           {
             loadingBoad ? (
