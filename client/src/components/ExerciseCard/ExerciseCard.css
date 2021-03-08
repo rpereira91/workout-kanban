@@ -14,8 +14,8 @@
   grid-template-areas:
     ". . .";
 }
-.modalWrapper{
-    z-index: 10;
+.modalWrapper .ant-modal-close{
+    visibility: hidden;
 }
 .tagWrapper {
     display: flex;
@@ -31,4 +31,8 @@
 }
 .info {
     text-align: center;
+}
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
 }

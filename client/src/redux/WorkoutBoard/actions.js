@@ -74,11 +74,13 @@ export const moveExercise = (exerciseId, columnId) => (dispatch, getState) => {
     const {exercises, selectedTags} = getState();
     let newExercises = filter(exercises, (ex) => ex.id !== exerciseId)
     let newCard = find(exercises, (ex) => ex.id === exerciseId)
-    const note = `Moved from ${COLUMNS[newCard.column].label} to ${COLUMNS[columnId].label} on ${moment(Date.now()).format('Do MMMM YYYY [at] hh:mm a')}`
-    newCard.notes = [note, ...newCard.notes]
-    newCard.column = columnId
-    newExercises = [...newExercises, newCard]
-    const currentBoard = builtBoard(newExercises, selectedTags) 
-    dispatch(setExercieses(newExercises));
-    dispatch(setBoard(currentBoard));
+    if (newCard.column !== columnId) {
+        const note = `Moved from ${COLUMNS[newCard.column].label} to ${COLUMNS[columnId].label} on ${moment(Date.now()).format('Do MMMM YYYY [at] hh:mm a')}`
+        newCard.notes = [note, ...newCard.notes]
+        newCard.column = columnId
+        newExercises = [...newExercises, newCard]
+        const currentBoard = builtBoard(newExercises, selectedTags) 
+        dispatch(setExercieses(newExercises));
+        dispatch(setBoard(currentBoard));
+    }
 }
