@@ -1,7 +1,9 @@
 :root{
   --bg-color: #2E4172;
   --col-color: #162955;
-  --card-color: #7887AB;
+  --card-color-do-do: #801515;
+  --card-color-today: #AA6F39;
+  --card-color-done: #273100;
   /* https://paletton.com/#uid=13L0u0kllllaFw0g0qFqFg0w0aF for color scheme, base RGB 2E4272 */
 }
 

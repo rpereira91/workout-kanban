@@ -84,3 +84,5 @@ export const moveExercise = (exerciseId, columnId) => (dispatch, getState) => {
         dispatch(setBoard(currentBoard));
     }
 }
+
+
