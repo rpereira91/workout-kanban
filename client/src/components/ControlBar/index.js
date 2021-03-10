@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import {Tooltip} from 'antd';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
-import AddBoxIcon from '@material-ui/icons/AddBox';
+
+import {AddBox as AddBoxIcon, Autorenew as AutorenewIcon} from '@material-ui/icons';
+
 import {map} from 'lodash';
 import * as boardActions from '../../redux/WorkoutBoard/actions';
 
@@ -15,7 +16,6 @@ function ControlBar({moveExercise, history, exercises}) {
         await map(exercises, (exercise) => {
             moveExercise(exercise.id, 0)
         });
-        // await setCurrentBoard()
     }
     return (
         <div>
