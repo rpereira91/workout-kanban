@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
-import {Button } from '@material-ui/core';
+import {Button, Input } from '@material-ui/core';
+import ExerciseRow from './ExerciseRow';
 import {connect} from 'react-redux'
 import * as boardActions from '../../redux/WorkoutBoard/actions';
+import { map } from 'lodash';
 
 // import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
-function AddExercise({history, addExercise}) {
+const AddExercise = ({history, addExercise}) => {
     const [newExercises, setNewExercises] = useState([{
-        id: 'asdf6',
-        exercise_name: 'Jump Squats',
-        tags: ['Legs', ],
-        default_reps: 10,
-        default_sets: 3,
-        equipment: ['Clubbell', 'Kettlebell', 'Dumbbell', 'Vest', 'BodyW eight'],
+        id: `temp_id_1 ${Date.now()}`,
+        exercise_name: '',
+        tags: [],
+        equipment: [],
         notes: [],
         column: 0,
       },])
@@ -21,13 +21,20 @@ function AddExercise({history, addExercise}) {
     }
     const onExerciseChange = (index, key, value) => {
         const editedExercise = newExercises
-        console.log(editedExercise[index][key])
+        editedExercise[index][key] = value
+        setNewExercises([...editedExercise])
     }
     return (
         <div>
             Add exercise
             <Button onClick={() => history.push('/')}>Go back</Button>
+            {/* <Input onChange={({target: {value}}) => onExerciseChange(0, 'exercise_name', value)} value={newExercises[0].exercise_name} placeholder="Exercise Name" /> */}
+            <div>
+            {
+                map(newExercises, (exercise, index) => <ExerciseRow exercise={exercise} onChange={onExerciseChange} position={index}/>)
+            }
             <Button onClick={submitAddExercise}>Add exercise</Button>
+            </div>
         </div>
     );
 }

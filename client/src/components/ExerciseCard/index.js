@@ -4,25 +4,25 @@ import { Modal, List, Tooltip } from 'antd';
 import Select from 'react-select';
 
 // icons
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import {Save, Create} from '@material-ui/icons';
+import {Save, Create, ArrowBackIos, ArrowForwardIos} from '@material-ui/icons';
 
-import {DEFAULT_REST} from '../../constants/constant';
+import {DEFAULT_REST, EXERCISE_TYPES} from '../../constants/constant';
 
 import {getNextColumn, getPrevColumn} from '../../constants/utils';
 import './ExerciseCard.css'
-function ExerciseCard({exercise, moveCard}) {
+
+const ExerciseCard = ({exercise, moveCard}) => {
     const {
         id, 
         exercise_name, 
-        default_sets, 
-        default_reps, 
+        default_sets = 10, 
+        default_reps = 10, 
         tags, 
         rest, 
         column, 
         notes, 
-        equipment, 
+        equipment,
+        exercise_type=EXERCISE_TYPES.SET_REP, 
     } = exercise;
     const [showMore, setMore] = useState(false);
     const [notesIndex, setNotesIndex] = useState(3);
@@ -39,6 +39,7 @@ function ExerciseCard({exercise, moveCard}) {
     return (
         <div className="cardBody">
             <span>{exercise_name}</span>
+            <Button onClick={() => setMore(true)}>Show More</Button>
             <Modal 
                 visible={showMore} 
                 title={(
@@ -55,9 +56,9 @@ function ExerciseCard({exercise, moveCard}) {
                 closeIcon={null}
             >
                 <div className="showMore">
-                    <ArrowBackIosIcon onClick={() => moveCard(id, prevColumnId)}/>
+                    <ArrowBackIos onClick={() => moveCard(id, prevColumnId)}/>
                     <div className="moreInfoBody">
-                        <span className="info">Do {default_sets} sets for {default_reps} reps</span>
+                        {/* {exercise_type == EXERCISE_TYPES.SET_REP && (<span className="info">Do {default_sets} sets for {default_reps} reps</span>)} */}
                         <span className="info">Rest for {rest ? rest : DEFAULT_REST} seconds</span>
                         {
                             editExercise ? (
@@ -100,10 +101,9 @@ function ExerciseCard({exercise, moveCard}) {
                         />
                         {/* {notes.map((note, index) => <span key={`note_key_${index}`}>{note}</span>)} */}
                     </div>
-                    <ArrowForwardIosIcon onClick={() => moveCard(id, nextColumnId)}/>
+                    <ArrowForwardIos onClick={() => moveCard(id, nextColumnId)}/>
                 </div>
             </Modal>
-            <Button onClick={() => setMore(true)}>Show More</Button>
         </div>
     )
 }

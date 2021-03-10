@@ -57,10 +57,18 @@ export const BOARD = {
 
 export const DEFAULT_REST = 30;
 
+export const EXERCISE_TYPES = {
+  SET_REP: 'setRep',
+  TOTAL_REPS: 'totalReps',
+  INTERVAL: 'interval',
+  timer: 'timer',
+}
+
 export const EXERCISES = [
   {
    id: 'asdf1',
     exercise_name: 'Kettlebell Swing',
+    exercise_type:EXERCISE_TYPES.SET_REP,
     tags: ['Pull', 'Hinge'],
     default_reps: 10,
     default_sets: 10,
@@ -71,6 +79,7 @@ export const EXERCISES = [
   {
    id: 'asdf2',
     exercise_name: 'Kettlebell Squat',
+    exercise_type:EXERCISE_TYPES.SET_REP,
     tags: ['Legs', ],
     default_reps: 10,
     default_sets: 10,
@@ -81,6 +90,7 @@ export const EXERCISES = [
   {
    id: 'asdf3',
     exercise_name: 'Kettlebell Clean',
+    exercise_type:EXERCISE_TYPES.SET_REP,
     tags: ['Push', ],
     default_reps: 10,
     default_sets: 10,
@@ -91,6 +101,7 @@ export const EXERCISES = [
   {
    id: 'asdf4',
     exercise_name: 'Kettlebell Snatch',
+    exercise_type:EXERCISE_TYPES.SET_REP,
     tags: ['Pull', ],
     default_reps: 10,
     default_sets: 6,
@@ -101,6 +112,7 @@ export const EXERCISES = [
   {
    id: 'asdf5',
     exercise_name: 'Inside/Outside circles',
+    exercise_type:EXERCISE_TYPES.SET_REP,
     tags: ['Club', ],
     default_reps: 10,
     default_sets: 10,

@@ -4,7 +4,8 @@
     background-color: var(--card-color-to-do);
     margin: 1em;
     padding: 1em;
-    width: 15em
+    width: 15em;
+    border-radius: 25px;
 }
 .showMore {
   display: grid;
