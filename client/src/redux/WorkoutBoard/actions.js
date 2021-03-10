@@ -84,3 +84,12 @@ export const moveExercise = (exerciseId, columnId) => (dispatch, getState) => {
         dispatch(setBoard(currentBoard));
     }
 }
+
+export const addExercise = (exList, callback = () => {}) => (dispatch, getState) => {
+    const {exercises, selectedTags} = getState();
+    const newExercises = [...exercises, ...exList];
+    console.log(newExercises)
+    dispatch(setExercieses(newExercises))
+    callback()
+}
+

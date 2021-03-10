@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {Button, Chip} from '@material-ui/core';
-import { Modal, List } from 'antd';
+import { Modal, List, Tooltip } from 'antd';
 import Select from 'react-select';
 
 // icons
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import CreateIcon from '@material-ui/icons/Create';
-import SaveIcon from '@material-ui/icons/Save';
+import {Save, Create} from '@material-ui/icons';
 
 import {DEFAULT_REST} from '../../constants/constant';
 
@@ -44,7 +43,10 @@ function ExerciseCard({exercise, moveCard}) {
                 visible={showMore} 
                 title={(
                     <div className="modalHeader">
-                        {exercise_name}{editExercise ? <SaveIcon onClick={() => setEditExercise(false)}/> : <CreateIcon onClick={() => setEditExercise(true)}/>}
+                        {exercise_name}{editExercise ? 
+                            (<Tooltip title="Save"><Save onClick={() => setEditExercise(false)}/></Tooltip>) : 
+                            (<Tooltip title="Edit"><Create onClick={() => setEditExercise(true)}/></Tooltip>)
+                        }
                     </div>
                 )}
                 wrapClassName="modalWrapper"
