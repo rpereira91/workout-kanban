@@ -8,7 +8,7 @@ import {Save, Create, ArrowBackIos, ArrowForwardIos} from '@material-ui/icons';
 
 import {DEFAULT_REST, EXERCISE_TYPES} from '../../constants/constant';
 
-import {getNextColumn, getPrevColumn} from '../../constants/utils';
+import {getNextColumn, getPrevColumn, getSelect} from '../../constants/utils';
 import './ExerciseCard.css'
 
 const ExerciseCard = ({exercise, moveCard}) => {
@@ -29,13 +29,7 @@ const ExerciseCard = ({exercise, moveCard}) => {
     const [editExercise, setEditExercise] = useState(false);
     const nextColumnId = getNextColumn(column)
     const prevColumnId = getPrevColumn(column)
-    const getSelect = (objects) => {
-        const tagSelect = []
-        objects.forEach(tag => {
-            tagSelect.push({label: tag, value: tag})
-        });
-        return tagSelect;
-    }
+
     return (
         <div className="cardBody">
             <span>{exercise_name}</span>
