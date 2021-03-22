@@ -1,0 +1,11 @@
+type Exercise @model {
+  id: ID!
+  title: String!
+  type:String!
+  tags: [String!]
+  default_reps: Int!
+  default_sets: Int!
+  equipment: [String!]
+  notes: [String!]
+  column: Int!
+}

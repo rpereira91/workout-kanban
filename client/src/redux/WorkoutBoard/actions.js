@@ -2,7 +2,8 @@ import {SET_BOARD, SET_TAGS, SET_SELECTED_TAGS, SET_EXERCIESES, LOADING_BOARD} f
 import {EXERCISES} from '../../constants/constant';
 import {COLUMNS} from '../../constants/board';
 import {builtBoard} from '../../constants/utils';
-import {filter, forEach, find} from 'lodash';
+import {filter, isNil, find} from 'lodash';
+import {getAllExercises} from '../../utils/api';
 import moment from 'moment';
 export const setBoard = (board) => {
     return {
@@ -61,11 +62,17 @@ export const getTags = () => (dispatch, getState) => {
 
 export const setCurrentBoard = (callBack = () => {}) => (dispatch, getState) => {
     const {selectedTags, exercises} = getState();
+    let currentBoard = []
     if (exercises.length === 0) {
-        //api call to get all the exercises here
-        dispatch(setExercieses(EXERCISES))
-    }
-    const currentBoard = builtBoard(exercises.length > 0 ? exercises : EXERCISES, selectedTags) 
+        getAllExercises()
+            .then((newExercises) => {
+                console.log(newExercises)
+                dispatch(setExercieses(newExercises))
+                currentBoard = builtBoard(newExercises, selectedTags) 
+            }).catch(() => dispatch(setExercieses([])))
+    } else {
+        currentBoard = builtBoard(exercises, selectedTags) 
+    } 
     dispatch(setBoard(currentBoard));
     callBack()
 }

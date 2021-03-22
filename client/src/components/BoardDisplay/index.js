@@ -5,6 +5,7 @@ import ControlBar from '../ControlBar';
 import ExerciseCard from '../ExerciseCard';
 import Board from '@lourenci/react-kanban'
 
+
 import * as boardActions from '../../redux/WorkoutBoard/actions';
 
 import '@lourenci/react-kanban/dist/styles.css'

@@ -14,7 +14,7 @@ import './ExerciseCard.css'
 const ExerciseCard = ({exercise, moveCard}) => {
     const {
         id, 
-        exercise_name, 
+        title, 
         default_sets = 10, 
         default_reps = 10, 
         tags, 
@@ -32,13 +32,13 @@ const ExerciseCard = ({exercise, moveCard}) => {
 
     return (
         <div className="cardBody">
-            <span>{exercise_name}</span>
+            <span>{title}</span>
             <Button onClick={() => setMore(true)}>Show More</Button>
             <Modal 
                 visible={showMore} 
                 title={(
                     <div className="modalHeader">
-                        {exercise_name}{editExercise ? 
+                        {title}{editExercise ? 
                             (<Tooltip title="Save"><Save onClick={() => setEditExercise(false)}/></Tooltip>) : 
                             (<Tooltip title="Edit"><Create onClick={() => setEditExercise(true)}/></Tooltip>)
                         }
