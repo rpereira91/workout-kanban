@@ -4,19 +4,29 @@ import ExerciseRow from './ExerciseRow';
 import {connect} from 'react-redux'
 import * as boardActions from '../../redux/WorkoutBoard/actions';
 import { map } from 'lodash';
-
+import {EXERCISE_TYPES} from '../../constants/constant'
 // import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-
+const TEMP_EXERCISE = {
+    title: 'Kettlebell Squat',
+    type:EXERCISE_TYPES.SET_REP,
+    tags: ['Legs', ],
+    default_reps: 10,
+    default_sets: 10,
+    equipment: ['Kettlebell', 'Dumbell'],
+    notes: ['Moved from Do Today to To Do on 04/03/2021 at 2:12pm'],
+    column: 0,
+}
 const AddExercise = ({history, addExercise, tags}) => {
-    const [newExercises, setNewExercises] = useState([{
-        id: `temp_id_1 ${Date.now()}`,
-        exercise_name: '',
-        tags: [],
-        equipment: [],
-        notes: [],
-        column: 0,
-      },])
+    // const [newExercises, setNewExercises] = useState([{
+    //     exercise_name: '',
+    //     tags: [],
+    //     equipment: [],
+    //     notes: [],
+    //     column: 0,
+    //   },])
+    const [newExercises, setNewExercises] = useState([TEMP_EXERCISE])
     const submitAddExercise = async () => {
+
         addExercise(newExercises, history.push('/'))
     }
     const onExerciseChange = (index, key, value) => {

@@ -17,11 +17,11 @@ const ExerciseCard = ({exercise, moveCard}) => {
         title, 
         default_sets = 10, 
         default_reps = 10, 
-        tags, 
+        tags = [], 
         rest, 
         column, 
-        notes, 
-        equipment,
+        notes = [], 
+        equipment = [],
         exercise_type=EXERCISE_TYPES.SET_REP, 
     } = exercise;
     const [showMore, setMore] = useState(false);

@@ -31,7 +31,6 @@ function BoardDisplay({setCurrentBoard, setBoard, board, selectedTags, moveExerc
   const handleRenderCard = (card, { removeCard, dragging }) => (
     <ExerciseCard exercise={card} moveCard={moveExercise}/>
   )
-
     return (
         <div className='workoutBoard'>
           <h1>Current Board</h1>

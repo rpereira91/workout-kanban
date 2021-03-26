@@ -3,7 +3,7 @@ import {EXERCISES} from '../../constants/constant';
 import {COLUMNS} from '../../constants/board';
 import {builtBoard} from '../../constants/utils';
 import {filter, isNil, find} from 'lodash';
-import {getAllExercises} from '../../utils/api';
+import {getAllExercises, setExercise, addCurrentExercise} from '../../utils/api';
 import moment from 'moment';
 export const setBoard = (board) => {
     return {
@@ -66,14 +66,13 @@ export const setCurrentBoard = (callBack = () => {}) => (dispatch, getState) => 
     if (exercises.length === 0) {
         getAllExercises()
             .then((newExercises) => {
-                console.log(newExercises)
                 dispatch(setExercieses(newExercises))
-                currentBoard = builtBoard(newExercises, selectedTags) 
+                currentBoard = builtBoard(newExercises, selectedTags)
+                dispatch(setBoard(currentBoard));
             }).catch(() => dispatch(setExercieses([])))
     } else {
         currentBoard = builtBoard(exercises, selectedTags) 
     } 
-    dispatch(setBoard(currentBoard));
     callBack()
 }
 
@@ -85,6 +84,7 @@ export const moveExercise = (exerciseId, columnId) => (dispatch, getState) => {
         const note = `Moved from ${COLUMNS[newCard.column].label} to ${COLUMNS[columnId].label} on ${moment(Date.now()).format('Do MMMM YYYY [at] hh:mm a')}`
         newCard.notes = [note, ...newCard.notes]
         newCard.column = columnId
+        setExercise(newCard)
         newExercises = [...newExercises, newCard]
         const currentBoard = builtBoard(newExercises, selectedTags) 
         dispatch(setExercieses(newExercises));
@@ -94,9 +94,13 @@ export const moveExercise = (exerciseId, columnId) => (dispatch, getState) => {
 
 export const addExercise = (exList, callback = () => {}) => (dispatch, getState) => {
     const {exercises, selectedTags} = getState();
-    const newExercises = [...exercises, ...exList];
-    console.log(newExercises)
-    dispatch(setExercieses(newExercises))
-    callback()
+    const createdExercises = []
+    exList.map((exercise) => {
+        addCurrentExercise(exercise)
+            .then((newExercise) => createdExercises.push(newExercise))
+            .catch((error) => console.log(error))
+    })
+    dispatch(setExercieses([...exercises, ...createdExercises]))
+    // console.log(newExercises)
 }
 
