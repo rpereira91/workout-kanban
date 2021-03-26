@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import * as boardActions from '../../redux/WorkoutBoard/actions';
 import { map } from 'lodash';
 import {EXERCISE_TYPES} from '../../constants/constant'
+import './AddExercise.css'
 // import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 const TEMP_EXERCISE = {
     title: 'Kettlebell Squat',
@@ -30,16 +31,17 @@ const AddExercise = ({history, addExercise, tags}) => {
         addExercise(newExercises, history.push('/'))
     }
     const onExerciseChange = (index, key, value) => {
-        const editedExercise = newExercises
+        const editedExercise = [...newExercises]
         editedExercise[index][key] = value
         setNewExercises([...editedExercise])
     }
+    console.log(newExercises)
     return (
         <div>
             Add exercise
             <Button onClick={() => history.push('/')}>Go back</Button>
             {/* <Input onChange={({target: {value}}) => onExerciseChange(0, 'exercise_name', value)} value={newExercises[0].exercise_name} placeholder="Exercise Name" /> */}
-            <div>
+            <div className="exerciseRowContainer">
             {
                 map(newExercises, (exercise, index) => <ExerciseRow allTags={tags} exercise={exercise} onChange={onExerciseChange} position={index}/>)
             }

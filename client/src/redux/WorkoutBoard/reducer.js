@@ -3,7 +3,23 @@ import {BOARD} from '../../constants/constant';
 import {EXERCISES} from '../../constants/constant'
 
 const INITAL_STATE = {
-    board: BOARD,
+    board: {columns: [
+        {
+            id: 0,
+            title: 'To Do',
+            cards: []
+        },
+        {
+            id: 1,
+            title: 'Current Day',
+            cards: []
+        },
+        {
+            id: 2,
+            title: 'Done',
+            cards: []
+        },
+    ]},
     tags: [],
     selectedTags: [],
     exercises: [],

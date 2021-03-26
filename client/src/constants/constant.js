@@ -1,69 +1,19 @@
-export const BOARD = {
-    columns: [
-      {
-       id: 'asdf',
-        title: 'To do',
-        cards: [
-          {
-           id: 'asdf',
-            title: "Kettlebell Cleans", 
-            sets: 3, 
-            reps: 10,
-            description: "some kind of description",
-            column_id: 0,
-          },
-          {
-           id: 'asdf',
-            title: "Kettlebell Snatch", 
-            sets: 3, 
-            reps: 10,
-            description: "some kind of description",
-            column_id: 0,
-          },
-        ]
-      },
-      {
-       id: 'asdf',
-        title: 'Current Day',
-        cards: [
-          {
-           id: 'asdf',
-            title: "Kettlebell Swing", 
-            sets: 3, 
-            reps: 10,
-            description: "some kind of description",
-            rest: 60,
-            column_id: 1,
-          },
-          {
-           id: 'asdf',
-            title: "Kettlebell Squat", 
-            sets: 3, 
-            reps: 10,
-            description: "some kind of description",
-            column_id: 2,
-          },
-        ]
-      },
-      {
-       id: 'asdf',
-        title: 'Done',
-        cards: [
-          
-        ]
-      }
-    ]
-  }
-
 export const DEFAULT_REST = 30;
 
 export const EXERCISE_TYPES = {
   SET_REP: 'setRep',
   TOTAL_REPS: 'totalReps',
   INTERVAL: 'interval',
-  timer: 'timer',
+  TIMER: 'timer',
 }
+export const EXERCISE_TYPES_SELECT = [
+  {label: 'Set Rep', value: EXERCISE_TYPES.SET_REP},
+  {label: 'Total Reps', value: EXERCISE_TYPES.TOTAL_REPS},
+  {label: 'Interval', value: EXERCISE_TYPES.INTERVAL},
+  {label: 'Timer', value: EXERCISE_TYPES.TIMER},
+]
 
+export const EQUIPMENT = ['Barbell', 'Kettlebell', 'Weighted Vest', 'Clubbell', 'Dumbell', 'None']
 export const EXERCISES = [
   {
    id: 'asdf1',

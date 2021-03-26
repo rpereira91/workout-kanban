@@ -1,4 +1,9 @@
 .exerciseRow {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+.exerciseRowContainer { 
+    display: flex;
+    flex-flow: column;
 }
