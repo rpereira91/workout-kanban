@@ -7,3 +7,8 @@
     display: flex;
     flex-flow: column;
 }
+.selectContainer{
+    min-width: 10em;
+    max-width: 20em;
+    height: auto;
+}
