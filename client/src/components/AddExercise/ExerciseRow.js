@@ -7,12 +7,14 @@ import {map} from 'lodash';
 import {EXERCISE_TYPES_SELECT, EQUIPMENT, EXERCISE_TYPES} from '../../constants/constant'
 
 const ExerciseRow = ({exercise, onChange, position, allTags}) => {
-    const {title, tags, type, equipment} = exercise
+    const {title, tags, type, equipment, default_reps, default_sets, } = exercise
     const renderType = () => {
         switch (type) {
             case EXERCISE_TYPES.SET_REP:
                 return (
-                    <div>Sets and reps</div>
+                    <div>Sets: <Input value={default_sets} placeholder={`${default_sets}`} onChange={({target: {value}}) => onChange(position, 'default_sets',value )}/>
+                        Reps: <Input value={default_reps} placeholder={`${default_reps}`} onChange={({target: {value}}) => onChange(position, 'default_reps',value )}/> 
+                    </div>
                 )
             case EXERCISE_TYPES.INTERVAL:
                 return (

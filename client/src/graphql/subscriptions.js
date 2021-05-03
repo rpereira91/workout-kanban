@@ -13,6 +13,7 @@ export const onCreateExercise = /* GraphQL */ `
       equipment
       notes
       column
+      repeat
       createdAt
       updatedAt
     }
@@ -30,6 +31,7 @@ export const onUpdateExercise = /* GraphQL */ `
       equipment
       notes
       column
+      repeat
       createdAt
       updatedAt
     }
@@ -47,6 +49,7 @@ export const onDeleteExercise = /* GraphQL */ `
       equipment
       notes
       column
+      repeat
       createdAt
       updatedAt
     }

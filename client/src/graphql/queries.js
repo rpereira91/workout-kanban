@@ -13,6 +13,7 @@ export const getExercise = /* GraphQL */ `
       equipment
       notes
       column
+      repeat
       createdAt
       updatedAt
     }
@@ -35,6 +36,7 @@ export const listExercises = /* GraphQL */ `
         equipment
         notes
         column
+        repeat
         createdAt
         updatedAt
       }

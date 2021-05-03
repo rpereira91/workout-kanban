@@ -8,4 +8,5 @@ type Exercise @model {
   equipment: [String!]
   notes: [String!]
   column: Int!
+  repeat: Int!
 }

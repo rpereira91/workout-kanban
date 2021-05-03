@@ -95,12 +95,17 @@ export const moveExercise = (exerciseId, columnId) => (dispatch, getState) => {
 export const addExercise = (exList, callback = () => {}) => (dispatch, getState) => {
     const {exercises, selectedTags} = getState();
     const createdExercises = []
-    exList.map((exercise) => {
-        addCurrentExercise(exercise)
-            .then((newExercise) => createdExercises.push(newExercise))
-            .catch((error) => console.log(error))
-    })
-    dispatch(setExercieses([...exercises, ...createdExercises]))
-    // console.log(newExercises)
+    try {
+        exList.map((exercise) => {
+            addCurrentExercise(exercise)
+                .then((newExercise) => createdExercises.push(newExercise))
+                .catch((error) => console.log(error))
+        })
+        dispatch(setExercieses([...exercises, ...createdExercises]))
+        callback()
+        
+    } catch (error) {
+        console.log(error)
+    }
 }
 

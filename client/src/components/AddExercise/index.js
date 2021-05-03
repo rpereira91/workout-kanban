@@ -16,12 +16,13 @@ const TEMP_EXERCISE = {
     equipment: [],
     notes: [],
     column: 0,
+    repeat: 1,
 }
 const AddExercise = ({history, addExercise, tags}) => {
 
     const [newExercises, setNewExercises] = useState([TEMP_EXERCISE])
     const submitAddExercise = async () => {
-        addExercise(newExercises, history.push('/'))
+        addExercise(newExercises, () => history.push('/'))
     }
     const onExerciseChange = (index, key, value) => {
         const editedExercise = [...newExercises]
@@ -35,6 +36,9 @@ const AddExercise = ({history, addExercise, tags}) => {
               }
         })
     }
+    const newExerciseRow = () => {
+        setNewExercises([...newExercises, TEMP_EXERCISE])
+    }
     return (
         <div>
             Add exercise
@@ -44,7 +48,10 @@ const AddExercise = ({history, addExercise, tags}) => {
             {
                 map(newExercises, (exercise, index) => <ExerciseRow allTags={tags} exercise={exercise} onChange={onExerciseChange} position={index}/>)
             }
-            <Button disabled={canSubmitExercises()} onClick={submitAddExercise}>Add exercise</Button>
+            <div>
+                <Button onClick={newExerciseRow}>New Row</Button>
+                <Button disabled={canSubmitExercises()} onClick={submitAddExercise}>Add exercises</Button>
+            </div>
             </div>
         </div>
     );
